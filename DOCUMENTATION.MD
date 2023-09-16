@@ -33,7 +33,8 @@ To get started with LARADEJ locally, follow these steps:
    ```bash
    composer install
 Configure your database connection in the .env file.
-Run database migrations:
+4. Run database migrations:
+
 bash
 Copy code
 php artisan migrate
@@ -49,17 +50,19 @@ Below is the database schema used by LARADEJ:
 
 Database Schema
 
-(The database schema can be seen in the uml diagram using the path "/uml")
-
 4. API Endpoints
-Create a New Person
-HTTP Method: POST
-Endpoint: /api
-Parameters: (Specify if any)
-Request Format: JSON
-Response Format: JSON
-(Provide a detailed description of the endpoint, including request and response examples.)
+- Create a New Person
+- HTTP Method: POST
+- Endpoint: /api
+- Parameters: (Specify if any)
+- Request Format: JSON
+- Response Format: JSON
+- Example request body:
 
+
+{
+   "name": "your name"
+}
 Read Details of a Person
 HTTP Method: GET
 Endpoint: /api/{user_id}
@@ -74,20 +77,36 @@ Response Format: JSON
 6. Dynamic Parameter Handling
 (Explain how dynamic input, such as names, is handled, and specify validation rules.)
 
+
+// This is in the person resource
+public function toArray(Request $request): array
+{
+    return [
+        "id" => $this->id,
+        "name" => $this->name
+    ];
+}
+
+// This is in the person model
+protected $fillable = [
+    'name'
+];
 7. Testing
 (Explain how to test the API using tools like Postman or scripts.)
+
+The application can be tested using tools like Postman, Insomnia, or other API testing tools for RESTful APIs.
 
 8. Deployment
 (Provide instructions for deploying the API to a server.)
 
 9. GitHub Repository
-The source code for LARADEJ is available on GitHub.
+The source code for LARADEJ is available on GitHub. GitHub Repository
 
 10. Known Limitations and Assumptions
 (List any known limitations or assumptions made during development.)
 
 11. Hosting
-(Explain how and where the API is hosted, including the URL.)
+The API is hosted on Render, and the URL is: (Specify your Render URL here)
 
 12. Troubleshooting
 (Provide guidance on common issues and how to resolve them.)
@@ -95,11 +114,17 @@ The source code for LARADEJ is available on GitHub.
 13. Contributing
 (Explain how others can contribute to your project if it's open-source.)
 
+Note: Currently, it's not open-source, but soon it will be.
+
 14. License
 (Mention the license under which your project is released.)
 
 15. Contact Information
-(Provide contact information for questions or issues.)
-
+Email: dabirideji@gmail.com
+GitHub: dabirideji
 Conclusion
 Thank you for using LARADEJ! We hope this documentation helps you get started and make the most of our API. If you have any questions or encounter any issues, please don't hesitate to reach out.
+
+
+
+Please replace `(Specify your Render URL here)` with the actual URL of your Render-hos

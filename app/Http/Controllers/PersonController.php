@@ -33,7 +33,15 @@ class PersonController extends Controller
         //
         $person = new Person();
         $person->name = $request->name;
-        $person->save();
+        $checking=$person->save();
+        if(!$checking){
+            return  response()->json([
+                "error" => "Something Went Wrong"
+            ],500);
+        }
+        return  response()->json([
+            "success" => "Data inserted Successfully"
+        ],201);
     }
 
     /**
@@ -44,7 +52,7 @@ class PersonController extends Controller
         $person = Person::where("id", $id)->get();
         if ($person->isEmpty()) {
             return  response()->json([
-                "Error" => "Person with this id is not found"
+                "error" => "Person with this id is not found"
             ]);
         };
         //    $person=Person::find($id)->get();

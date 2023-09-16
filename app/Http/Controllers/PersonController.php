@@ -79,7 +79,7 @@ class PersonController extends Controller
             "Message" => "UPDATED SUCCESSFULLY"
         ], 200);
 
-           $person=Person::find($id)->get();
+        $person=Person::find($id)->get();
         return PersonResource::collection($person);
 
     }
